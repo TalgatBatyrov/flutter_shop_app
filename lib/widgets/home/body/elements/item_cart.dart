@@ -13,31 +13,34 @@ class ItemCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(kDefaultPadding),
-          decoration: BoxDecoration(
-            color: product.color,
-            borderRadius: BorderRadius.circular(16),
+    return GestureDetector(
+      onTap: () => press(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(kDefaultPadding),
+            decoration: BoxDecoration(
+              color: product.color,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Image(
+              image: NetworkImage(product.image),
+            ),
           ),
-          child: Image(
-            image: NetworkImage(product.image),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: kDefaultPadding / 4),
+            child: Text(
+              product.title,
+              style: const TextStyle(color: kTExtLightColor),
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: kDefaultPadding / 4),
-          child: Text(
-            product.title,
-            style: const TextStyle(color: kTExtLightColor),
-          ),
-        ),
-        Text(
-          '\$${product.prise}',
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        )
-      ],
+          Text(
+            '\$${product.prise}',
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          )
+        ],
+      ),
     );
   }
 }
